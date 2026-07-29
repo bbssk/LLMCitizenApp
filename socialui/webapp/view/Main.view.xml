@@ -1,6 +1,53 @@
 <mvc:View controllerName="com.bhargav.socialui.controller.Main"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+    <Page id="page" title="Submit a Post" showHeader="true">
+        <content>
+            <VBox class="sapUiMediumMargin">
+                <Title text="New Social Post" level="H2" class="sapUiSmallMarginBottom"/>
+                <f:SimpleForm
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanL="3"
+                    labelSpanM="3"
+                    emptySpanL="4"
+                    emptySpanM="4"
+                    columnsL="1"
+                    columnsM="1">
+                    <f:content>
+                        <Label text="Author" required="true"/>
+                        <Input id="authorInput" value="BBSSK2" placeholder="Enter author ID"/>
+
+                        <Label text="Title" required="true"/>
+                        <Input id="titleInput" value="worst place to drive car"/>
+
+                        <Label text="Description" required="true"/>
+                        <TextArea
+                            id="longTextInput"
+                            rows="6"
+                            growing="true"
+                            width="100%"
+                            value="Before January 2025, getting to the office was a quick 25-minute drive for 6 km for me. Now it's at least 40 minutes. What's going on with Bengaluru traffic? Did everyone suddenly decide to make going to the office their New Year's resolution, or have companies started dragging people back in? 12.9629° N, 77.5775° E"/>
+
+                        <Label text="Posting Date" required="true"/>
+                        <DatePicker
+                            id="postingDateInput"
+                            valueFormat="yyyy-MM-dd"
+                            displayFormat="dd MMM yyyy"
+                            value="2024-01-01"/>
+                    </f:content>
+                </f:SimpleForm>
+
+                <HBox justifyContent="End" class="sapUiSmallMarginTop">
+                    <Button
+                        id="submitBtn"
+                        text="Submit Post"
+                        type="Emphasized"
+                        press=".onSubmit"/>
+                </HBox>
+            </VBox>
+        </content>
     </Page>
 </mvc:View>
