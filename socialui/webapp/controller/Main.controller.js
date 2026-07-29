@@ -21,7 +21,7 @@ sap.ui.define([
             }
 
             var oPayload = {
-                "id": "rdt-6669955",
+                "id": "rdt-" + Math.floor(1000000 + Math.random() * 9000000),
                 author:      sAuthor,
                 title:       sTitle,
                 longText:    sLongText,
