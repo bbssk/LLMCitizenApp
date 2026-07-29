@@ -29,7 +29,7 @@ sap.ui.define([
             };
 
             jQuery.ajax({
-                url: "https://issue-reporting-app.cfapps.us10-001.hana.ondemand.com/genaihub-api/processPost",
+                url: "bhargavllmsrv/genaihub-api/processPost",
                 method: "POST",
                 contentType: "application/json",
                 data: JSON.stringify(oPayload),
