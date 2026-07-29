@@ -1,3 +1,57 @@
 _schema-version: "3.2"
 ID: social-ui
 version: 0.0.1
+modules:
+- name: social-ui-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: social-ui-destination-service
+    parameters:
+      content-target: true
+  - name: social-ui_html_repo_host
+    parameters:
+      service-key:
+        name: social-ui_html_repo_host-key
+  - name: uaa_social-ui
+    parameters:
+      service-key:
+        name: uaa_social-ui-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: social_ui_social_ui_html_repo_host
+          ServiceInstanceName: social-ui-html5-app-host-service
+          ServiceKeyName: social-ui_html_repo_host-key
+          sap.cloud.service: social-ui
+        - Authentication: OAuth2UserTokenExchange
+          Name: social_ui_uaa_social_ui
+          ServiceInstanceName: social-ui-xsuaa-service
+          ServiceKeyName: uaa_social-ui-key
+          sap.cloud.service: social-ui
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+resources:
+- name: social-ui-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      version: 1.0.0
+    service: destination
+    service-name: social-ui-destination-service
+    service-plan: lite
+- name: social-ui_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: social-ui-html5-app-host-service
+    service-plan: app-host
+- name: uaa_social-ui
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: social-ui-xsuaa-service
+    service-plan: application
